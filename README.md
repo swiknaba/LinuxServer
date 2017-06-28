@@ -6,7 +6,6 @@
 ### Stack/Dependencies
 - python 2.7
 - flask
-- vagrant
 - html/css (bootstrap)
 - SQLAlchemy
 - [python slugify module](https://github.com/un33k/python-slugify)
