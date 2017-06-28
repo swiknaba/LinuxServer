@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+
+{% include "header.html" %}
+
+<div class="container content">
+    <div class="row padding_left">
+        <div class="col-12 col-md-auto">
+            <h3><a href='edit'>edit</a> | <a href='delete'>delete</a> </h3>
+            <h2>{{item.name}}</h2>
+            <p>{{item.description}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

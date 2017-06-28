@@ -1,0 +1,44 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  background-image: url('congruent_outline.png');
+  background-repeat: repeat;
+}
+
+a {
+    color: #e67300;
+    text-shadow: 1px 1px #ffbf80;
+}
+
+a:hover {
+    color: #ff8000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.header {
+  background-image: url('congruent_outline.png');
+  background-repeat: repeat;
+}
+
+.content {
+    margin-top: 48px;
+    background-image: url('lightpaperfibers.png');
+    background-repeat: repeat;
+}
+
+.padding_left {
+    padding-left: 15px;
+}
+
+
+/*
+
+binding_dark.png
+cardboard.png
+congruent_outline.png
+dark_mosaic.png
+lightpaperfibers.png
+
+*/

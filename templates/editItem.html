@@ -1,0 +1,58 @@
+{% extends "main.html" %}
+{% block content %}
+
+{% include "header.html" %}
+
+<div class="container content">
+    <h2>Edit the following Item:</h2>
+
+    <form action="#" method = "POST">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" maxlength="100" name="name" class="form-control" value="{{item.name}}">
+            <br>
+            <label for="description">Description:</label>
+            <textarea class="form-control" maxlength="250" rows="3" name="description">{{item.description}}</textarea>
+            <br>
+            <label for="categorie">Categorie:</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="categorie" id="categorie1" value="Soccer" {% if item.categorie.name == 'Soccer' %} checked {% endif %}>Soccer
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="categorie" id="categorie2" value="Basketball" {% if item.categorie.name == 'Basketball' %} checked {% endif %}>Basketball
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="categorie" id="categorie3" value="Baseball" {% if item.categorie.name == 'Baseball' %} checked {% endif %}>Baseball
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="categorie" id="categorie4" value="Frisbee" {%if item.categorie.name == 'Frisbee' %} checked {% endif %}>Frisbee
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="categorie" id="categorie5" value="Snowboarding" {%if item.categorie.name == 'Snowboarding' %} checked {% endif %}>Snowboarding
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="categorie" id="categorie6" value="MMA" {%if item.categorie.name == 'MMA' %} checked {% endif %}>MMA
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="categorie" id="categorie7" value="Skiing" {%if item.categorie.name == 'Skiing' %} checked {% endif %}>Skiing
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default" id="submit" type="submit">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
