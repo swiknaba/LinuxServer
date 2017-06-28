@@ -1,9 +1,9 @@
-#Item Catalog
-##A Udacity Project
+# Item Catalog
+## A Udacity Project
 
 ***
 
-###Stack/Dependencies
+### Stack/Dependencies
 - python 2.7
 - flask
 - vagrant
@@ -13,7 +13,7 @@
 - jQuery (for google sign in)
 
 
-###Code-Organisation
+### Code-Organisation
     ├── client_secrets.json     # for Google OAuth 2
     ├── db_setup.py             # defines the SQLAlchemy database
     ├── populate_db.py          # run to start db with same sample entries
@@ -32,7 +32,7 @@
         └── ...                 # multiple HTML files, using flask/jinja2 framework
 
 
-###JSON endpoints
+### JSON endpoints
 There are basically three types of JSON endpoints:
 
 1. `/catalog/JSON` will show all items
@@ -42,5 +42,5 @@ There are basically three types of JSON endpoints:
 The urls for these endpoints are actually the same used when browsing the app, just append `JSON` to the url
 
 
-###Login
+### Login
 One can login with a Google Account (OAuth2), only the bare minimum rights have to be granted. Once logged in a user can add/edit/delete items to every category
