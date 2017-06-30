@@ -8,7 +8,7 @@
 - flask
 - html/css (bootstrap)
 - SQLAlchemy
-- [python slugify module](https://github.com/un33k/python-slugify)
+- [python slugify module](https://github.com/un33k/python-slugify) => YOU HAVE TO INSTALL THIS !!!!!!!!!
 - jQuery (for google sign in)
 
 
@@ -42,4 +42,4 @@ The urls for these endpoints are actually the same used when browsing the app, j
 
 
 ### Login
-One can login with a Google Account (OAuth2), only the bare minimum rights have to be granted. Once logged in a user can add/edit/delete items to every category
+One can login with a Google Account (OAuth2), only the bare minimum rights have to be granted. Once logged in a user can add/edit/delete items to every category which he/her himself did create originally
