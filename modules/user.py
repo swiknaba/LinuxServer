@@ -6,7 +6,7 @@ user.py handles user interactions like login, logout, ..
 
 from flask import render_template, redirect, request
 from flask import session as login_session
-from functions import createUser, getUserId
+from functions import createUser, getUserIdByMail
 import random
 import string
 
@@ -141,7 +141,7 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
-    user_id = getUserId(login_session['email'])
+    user_id = getUserIdByMail(login_session['email'])
     if not user_id:
         user_id = createUser(login_session)
         output = ''

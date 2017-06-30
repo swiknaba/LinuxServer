@@ -8,7 +8,7 @@ from flask import render_template, redirect, request
 from functions import not_logged_in
 from functions import getItemsFromCategorie, getAllCategories, getItem
 from functions import saveItem, addAndCommit, getCategorieIdFromName, make_slug
-from functions import deleteItemFromDb, getRecentItems
+from functions import deleteItemFromDb, getRecentItems, not_owner
 
 routes = []
 
@@ -46,7 +46,10 @@ def showItem(categorie_name, item_slug):
     if not_logged_in():
         return render_template('showItem_public.html', item=item)
     else:
-        return render_template('showItem.html', item=item)
+        if not_owner(categorie_name, item_slug):
+            return render_template('showItem.html', item=item)
+        else:
+            return render_template('showItem.html', item=item, owner=True)
 routes.append(dict(
     rule='catalog/<string:categorie_name>/items/<string:item_slug>/',
     view_func=showItem))
@@ -70,6 +73,8 @@ routes.append(dict(
 def updateItem(categorie_name, item_slug):
     if not_logged_in():
         return redirect('login')
+    if not_owner(categorie_name, item_slug):
+        return redirect('catalog/' + cat_name + '/items/' + item.slug)
     item = getItem(categorie_name, item_slug)
     if request.method == 'POST':
         if request.form['name']:

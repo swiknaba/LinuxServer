@@ -4,7 +4,7 @@ in case of error: delete the old database file first
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from db_setup import Base, Categorie, Item
+from db_setup import Base, Categorie, Item, User
 
 engine = create_engine('sqlite:///productcatalog.db')
 Base.metadata.create_all(engine)
@@ -41,15 +41,23 @@ session.add(cat7)
 session.commit()
 
 
+#create a user
+usr1 = User(name="Lud", email="ludwigreinmiedl@gmail.com")
+session.add(usr1)
+session.commit()
+
 #create some items
 item1 = Item(name="A round leather ball", slug="round-leather-ball",
-             categorie=cat1, description="This fine ball is made from leather")
+             categorie=cat1, description="This fine ball is made from leather",
+             user=usr1)
 session.add(item1)
 session.commit()
 
 item2 = Item(name="A T-Shirt", slug="t-shirt",
-             categorie=cat1, description="This fine T-Shirt is cool")
+             categorie=cat1, description="This fine T-Shirt is cool",
+             user=usr1)
 session.add(item2)
 session.commit()
+
 
 print("added some categories and itmes, have fun with it!")

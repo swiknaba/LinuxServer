@@ -6,7 +6,9 @@
 <div class="container content">
     <div class="row padding_left">
         <div class="col-12 col-md-auto">
+            {% if owner %}
             <h3><a href='edit'>edit</a> | <a href='delete'>delete</a> </h3>
+            {% endif %}
             <h2>{{item.name}}</h2>
             <p>{{item.description}}</p>
         </div>
