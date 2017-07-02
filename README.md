@@ -33,10 +33,10 @@
 ### Run the Project
 - make sure you have [Vagrant](https://www.vagrantup.com/intro/getting-started/index.html) intalled and running
 - set up Vagrant to use port 5000
-- put all files in the Vagrant directory, then turn it on: `vagrant up` and log in `vagrant ssh`
+- put all files in the Vagrant directory, then turn it on: `>vagrant up` and log in `>vagrant ssh`
 - navigate to the itemcatalog folder inside your vagrant directory
-- install the database including some sample entries: `python db_setup.py`
-- start your server locally: `python project.py`
+- install the database including some sample entries: `>python db_setup.py`
+- start your server locally: `>python project.py`
 
 ### JSON endpoints
 There are basically three types of JSON endpoints:
