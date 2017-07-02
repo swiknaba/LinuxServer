@@ -8,7 +8,7 @@
 - flask
 - html/css (bootstrap)
 - SQLAlchemy
-- [python slugify module](https://github.com/un33k/python-slugify) => YOU HAVE TO INSTALL THIS !!!!!!!!!
+- [python slugify module](https://github.com/un33k/python-slugify) => You have to install this!
 - jQuery (for google sign in)
 
 
@@ -30,6 +30,13 @@
     └── templates               # all HTML files
         └── ...                 # multiple HTML files, using flask/jinja2 framework
 
+### Run the Project
+- make sure you have [Vagrant](https://www.vagrantup.com/intro/getting-started/index.html) intalled and running
+- set up Vagrant to use port 5000
+- put all files in the Vagrant directory, then turn it on: `vagrant up` and log in `vagrant ssh`
+- navigate to the itemcatalog folder inside your vagrant directory
+- install the database including some sample entries: `python db_setup.py`
+- start your server locally: `python project.py`
 
 ### JSON endpoints
 There are basically three types of JSON endpoints:
