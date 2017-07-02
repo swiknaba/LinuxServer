@@ -73,9 +73,9 @@ routes.append(dict(
 def updateItem(categorie_name, item_slug):
     if not_logged_in():
         return redirect('login')
-    if not_owner(categorie_name, item_slug):
-        return redirect('catalog/' + cat_name + '/items/' + item.slug)
     item = getItem(categorie_name, item_slug)
+    if not_owner(categorie_name, item_slug):
+        return redirect('catalog/' + categorie_name + '/items/' + item.slug)
     if request.method == 'POST':
         if request.form['name']:
             item.name = request.form['name']
@@ -99,6 +99,8 @@ def deleteItem(categorie_name, item_slug):
     if not_logged_in():
         return redirect('login')
     item = getItem(categorie_name, item_slug)
+    if not_owner(categorie_name, item_slug):
+        return redirect('catalog/' + categorie_name + '/items/' + item.slug)
     if request.method == 'POST':
         item = getItem(categorie_name, item_slug)
         deleteItemFromDb(item)
