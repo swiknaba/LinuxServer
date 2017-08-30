@@ -17,11 +17,12 @@ import httplib2
 import json
 from flask import make_response
 import requests
+import os.path
 
 routes = []
 
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open(os.path.dirname(__file__) + '/../client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item Catalog"
 
 

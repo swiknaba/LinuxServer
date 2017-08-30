@@ -13,6 +13,7 @@ mod = Blueprint('modules', __name__)
 @mod.route('/')
 def home():
     return redirect('catalog/')
+    #return redirect('/')
 
 
 # import all module's routes here
