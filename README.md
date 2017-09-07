@@ -48,6 +48,7 @@ ubuntu@ip-18-194-4-174:/ `sudo ufw status`
     Nginx Full (v6)            ALLOW       Anywhere (v6)
 
 Note: the rules for `Nginx Full` have been added later on. The provided screenshot `Screenshot 2017-09-07 17.25.59.png` shows the permissions of Amazon Lightsail's Firewall.
+![firewall-permissions](https://github.com/swiknaba/LinuxServer/Screenshot 2017-09-07 17.25.59.png)
 
 Because I had troubles with apache, I gave up on it and used nginx.
 
@@ -87,7 +88,7 @@ I changed the logs of the app to be at `/var/log/nginx/catalogapp.error.log` as 
 
 # address of application
 
-    [http://18.194.4.174/](http://18.194.4.174/)
+    http://18.194.4.174/
 
 # How to login via ssh
 
