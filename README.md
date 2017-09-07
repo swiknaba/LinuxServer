@@ -66,6 +66,21 @@ This tutorial did work in the end, however I ran into several problems, document
    - requests
    - MySql-Python
    - flask-sqlalchemy
+   
+I changed the logs of the app to be at `/var/log/nginx/catalogapp.error.log` as well as `/var/log/nginx/catalogapp.access.log` by adding two lines to `/etc/nginx/sites-available/catalogapp`:
+
+    server {
+        listen 80;
+        server_name 18.194.4.174;
+    
+        location / {
+            include uwsgi_params;
+            uwsgi_pass unix:///home/ubuntu/catalogapp/catalogapp.sock;
+        }
+    
+        error_log /var/log/nginx/catalogapp.error.log warn;
+        access_log /var/log/nginx/catalogapp.access.log;
+    }
 
 # How to login via ssh
 
