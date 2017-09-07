@@ -87,7 +87,7 @@ I changed the logs of the app to be at `/var/log/nginx/catalogapp.error.log` as 
 
 # address of application
 
-    http://18.194.4.174/
+    [http://18.194.4.174/](http://18.194.4.174/)
 
 # How to login via ssh
 
