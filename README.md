@@ -13,7 +13,6 @@ The key fingerprint is:
 SHA256:6Y8OM+aCgexbF+khyHx1bJPDpR9ZI2HykUSEXsqO/9U lud@Ludwigs-MacBook-Pro.local
 The key's randomart image is:
 
-`
       +---[RSA 2048]----+
       |       .=Xoo     |
       |      o.Bo= .    |
@@ -25,7 +24,6 @@ The key's randomart image is:
       | .o oo = o.      |
       | ..  ...+..      |
       +----[SHA256]-----+
-`
 
 - give new user root rights: $ sudo usermod -aG sudo grader
 - verify, if successful: `grep -Po '^sudo.+:\K.*$' /etc/group`
