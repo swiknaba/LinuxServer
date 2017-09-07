@@ -1,41 +1,45 @@
 # Linux Server
-## Progress
+## Progress of setting up
 - generate new SSh key pair "grader.pem", permissions: 400
 - change SSH port to: 2200 (/etc/ssh/sshd_config: PORT 2200)
     => ssh ubuntu@35.158.70.106 -p 2200
 - disable root login (/etc/ssh/sshd_config: PermitRootLogin no)
-- new user "grader": https://unix.stackexchange.com/questions/210228/add-a-user-wthout-password-but-with-ssh-and-public-key
-our identification has been saved in grader.
+- create a new user "grader" as explained at [Stack Exchange](https://unix.stackexchange.com/questions/210228/add-a-user-wthout-password-but-with-ssh-and-public-key)
+
+- generate ssh keyfile: 
+your identification has been saved in grader.
 Your public key has been saved in grader.pub.
 The key fingerprint is:
 SHA256:6Y8OM+aCgexbF+khyHx1bJPDpR9ZI2HykUSEXsqO/9U lud@Ludwigs-MacBook-Pro.local
 The key's randomart image is:
-+---[RSA 2048]----+
-|       .=Xoo     |
-|      o.Bo= .    |
-|     .oXo+       |
-|o . . +++..      |
-|.= o +o S.       |
-|..o o.oo    .    |
-|.  + o* .  . E   |
-| .o oo = o.      |
-| ..  ...+..      |
-+----[SHA256]-----+
--
+
+    +---[RSA 2048]----+
+    |       .=Xoo     |
+    |      o.Bo= .    |
+    |     .oXo+       |
+    |o . . +++..      |
+    |.= o +o S.       |
+    |..o o.oo    .    |
+    |.  + o* .  . E   |
+    | .o oo = o.      |
+    | ..  ...+..      |
+    +----[SHA256]-----+
+
 - give new user root rights: $ sudo usermod -aG sudo grader
-- verify, if successful: $ grep -Po '^sudo.+:\K.* $' /etc/group   (before copy-paste: remove space between * and S)
+- verify, if successful: `grep -Po '^sudo.+:\K.*$' /etc/group`
     => ubuntu, grader
-- ubuntu@ip-18-194-4-174:/$ sudo ufw status
+
+ubuntu@ip-18-194-4-174:/$ sudo ufw status
 Status: active
 
-To                         Action      From
---                         ------      ----
-2200/tcp                   ALLOW       Anywhere
-80/tcp                     ALLOW       Anywhere
-123/udp                    ALLOW       Anywhere
-2200/tcp (v6)              ALLOW       Anywhere (v6)
-80/tcp (v6)                ALLOW       Anywhere (v6)
-123/udp (v6)               ALLOW       Anywhere (v6)
+    To                         Action      From
+    --                         ------      ----
+    2200/tcp                   ALLOW       Anywhere
+    80/tcp                     ALLOW       Anywhere
+    123/udp                    ALLOW       Anywhere
+    2200/tcp (v6)              ALLOW       Anywhere (v6)
+    80/tcp (v6)                ALLOW       Anywhere (v6)
+    123/udp (v6)               ALLOW       Anywhere (v6)
 
 Because I had troubles with apache, I gave up on it and used nginx.
 
@@ -43,13 +47,11 @@ Following the [digital ocean tutorial](https://www.digitalocean.com/community/tu
 
 This tutorial did work in the end, however I ran into several problems, documented in the [Udactiy forum](https://discussions.udacity.com/t/solved-uwsgi-proxy-not-working-connection-refused-manual-starting-works/353197).
 1. sudo nano /etc/nginx/sites-available/catalogapp
-  This line: uwsgi_pass unix:///home/ubuntu/catalogapp/catalogapp.sock note the /// instead of /
-2. the app secret key needs to be above (not inside) the `if __name__ == '__main__':` loop of the wsgi.py file.
+  This line: `uwsgi_pass unix:///home/ubuntu/catalogapp/catalogapp.sock` note the `///` instead of `/` as shown in the tutorial
+2. the app secret key needs to be also above (not only inside) the `if __name__ == '__main__':` loop of the wsgi.py file.
+- secret_key: `TVLb2,zX,V#geo6j^dD%uzEgtsjaBoG8*AEKvMeeWR2{3;YNQ2{>3CgLrE4k2Lb3`
 
-- secret_key: TVLb2,zX,V#geo6j^dD%uzEgtsjaBoG8*AEKvMeeWR2{3;YNQ2{>3CgLrE4k2Lb3
-        => has to be defined in the wsgi.py file!
 - sudo systemctl restart nginx
-- Changing the owner of /var/www/django/ to www-data made
 - for the virtual environment install all necessary python packages, which are (additionally to the list below "Stack/Dependencies")
    - oauth2client
    - requests
@@ -62,7 +64,7 @@ This tutorial did work in the end, however I ran into several problems, document
     
 Use the provided private ssh key `grader` for authentication (found in main folder of this project). Copy it to your machines /.ssh folder and chmod the permission to be 400 than add it to your keychain (e.g. for macOS: `ssh-add -K /.ssh/grader`)
 
-=== for the app itself:
+=== Readme for the app itself:
 
 # Item Catalog
 ## A Udacity Project
