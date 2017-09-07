@@ -25,7 +25,7 @@ The key's randomart image is:
 - give new user root rights: $ sudo usermod -aG sudo grader
 - verify, if successful: $ grep -Po '^sudo.+:\K.* $' /etc/group   (before copy-paste: remove space between * and S)
     => ubuntu, grader
-- ubuntu@ip-172-26-7-109:/$ sudo ufw status
+- ubuntu@ip-18-194-4-174:/$ sudo ufw status
 Status: active
 
 To                         Action      From
@@ -36,48 +36,33 @@ To                         Action      From
 2200/tcp (v6)              ALLOW       Anywhere (v6)
 80/tcp (v6)                ALLOW       Anywhere (v6)
 123/udp (v6)               ALLOW       Anywhere (v6)
-- sudo apt-get install apache2
-- sudo apt-get install libapache2-mod-wsgi
-    => WSGIScriptAlias /catalog var/www/html/catalog.wsgi
-- sudo apt-get install postgresql
-- installed pip, slugify
-- Git: sudo apt-get install build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
-  => sudo git clone https://github.com/swiknaba/LinuxServer.git
-- SQLAlchemy: https://stackoverflow.com/questions/22353512/how-to-install-sqlalchemy-on-ubuntu
-- no module oauth2client.client => sudo pip install --upgrade google-api-python-client
-- no module requests => sudo pip install requests
-- https://devops.profitbricks.com/tutorials/install-and-configure-mod_wsgi-on-ubuntu-1604-1/
-- sudo service apache2 restart  // sudo service apache2 reload
-- sudo a2enconf wsgi
-- updated google oauth credentials. Problem: can't add IP address as authorized uri
-    => solution: https://stackoverflow.com/questions/14238665/can-a-public-ip-address-be-used-as-google-oauth-redirect-uri
-    => use 35.157.147.219.xip.io/login
 
-Apache2 is failing and I don't get it to run, trying Nginx:
-https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04
-- uwsgi --socket 0.0.0.0:80 --protocol=http -w wsgi
-- sudo source catalogappenv/bin/activte
-- sudo uwsgi --socket 0.0.0.0:80 --protocol=http -w wsgi:app --master
-- if socket.error: address already in use:
-    -> sudo lsof -i:80
-    -> sudo kill PID
+Because I had troubles with apache, I gave up on it and used nginx.
+
+Following the [digital ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04) for setting up ngix + flask to be served as uwsgi application. Be aware, that the tutorial for Ubuntu 14 and 16 do have important differences! I used Ubuntu 16 since that was offered by Amazon Lightsail.
+
+This tutorial did work in the end, however I ran into several problems, documented in the [Udactiy forum](https://discussions.udacity.com/t/solved-uwsgi-proxy-not-working-connection-refused-manual-starting-works/353197).
+1. sudo nano /etc/nginx/sites-available/catalogapp
+  This line: uwsgi_pass unix:///home/ubuntu/catalogapp/catalogapp.sock note the /// instead of /
+2. the app secret key needs to be above (not inside) the `if __name__ == '__main__':` loop of the wsgi.py file.
+
 - secret_key: TVLb2,zX,V#geo6j^dD%uzEgtsjaBoG8*AEKvMeeWR2{3;YNQ2{>3CgLrE4k2Lb3
         => has to be defined in the wsgi.py file!
 - sudo systemctl restart nginx
+- Changing the owner of /var/www/django/ to www-data made
+- for the virtual environment install all necessary python packages, which are (additionally to the list below "Stack/Dependencies")
+   - oauth2client
+   - requests
+   - MySql-Python
+   - flask-sqlalchemy
 
-Changing the owner of /var/www/django/ to www-data made it work.
-Specifically the problem was with ownership of the file /etc/nginx/uwsgi_params
+# How to login via ssh
 
-AFTER:
-sudo rm -rf /usr/share/nginx/html/index.html .
-rm: refusing to remove '.' or '..' directory: skipping '.'
-grader@ip-172-26-7-109:~$ sudo rm -rf /usr/share/nginx/html/index.html
-grader@ip-172-26-7-109:~$ sudo ln -s /usr/share/nginx/html/ /var/www/html/catalogapp/
-grader@ip-172-26-7-109:~$ sudo systemctl restart nginx
-grader@ip-172-26-7-109:~$ sudo nginx -t
-nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-nginx: configuration file /etc/nginx/nginx.conf test is su ccessful
-THE IP SAYS: FORBIDDEN
+    ssh grader@18.194.4.174 -p 2200
+    
+Use the provided private ssh key `grader` for authentication (found in main folder of this project). Copy it to your machines /.ssh folder and chmod the permission to be 400 than add it to your keychain (e.g. for macOS: `ssh-add -K /.ssh/grader`)
+
+=== for the app itself:
 
 # Item Catalog
 ## A Udacity Project
