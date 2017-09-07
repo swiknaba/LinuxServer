@@ -85,6 +85,10 @@ I changed the logs of the app to be at `/var/log/nginx/catalogapp.error.log` as 
 - finally update Ubuntu once again `sudo apt-get update` && `sudo apt-get upgrade` => as of Sept. 7th 2017 all updates are installed, double check by running commands again yields: `0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.`.
 - final test: restarting the server causes the wsgi app to start on boot and the website is running
 
+# address of application
+
+    http://18.194.4.174/
+
 # How to login via ssh
 
     ssh grader@18.194.4.174 -p 2200
