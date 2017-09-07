@@ -53,12 +53,12 @@ Because I had troubles with apache, I gave up on it and used nginx.
 
 Following the [digital ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04) for setting up ngix + flask to be served as uwsgi application. Be aware, that the tutorial for Ubuntu 14 and 16 do have important differences! I used Ubuntu 16 since that was offered by Amazon Lightsail.
 
-This tutorial did work in the end, however I ran into several problems, documented in the [Udactiy forum](https://discussions.udacity.com/t/solved-uwsgi-proxy-not-working-connection-refused-manual-starting-works/353197).
+This tutorial did work in the end, however I ran into several problems, documented in the [Udacity forum](https://discussions.udacity.com/t/solved-uwsgi-proxy-not-working-connection-refused-manual-starting-works/353197).
 1. sudo nano /etc/nginx/sites-available/catalogapp
   This line: `uwsgi_pass unix:///home/ubuntu/catalogapp/catalogapp.sock` note the `///` instead of `/` as shown in the tutorial
 2. the app secret key needs to be also above (not only inside) the `if __name__ == '__main__':` loop of the wsgi.py file.
 - secret_key: `TVLb2,zX,V#geo6j^dD%uzEgtsjaBoG8*AEKvMeeWR2{3;YNQ2{>3CgLrE4k2Lb3`
-3. add the following to the `wsgi.ph` file: `sys.path.insert(0, '/home/ubuntu/catalogapp')`
+3. add the following to the `wsgi.py` file: `sys.path.insert(0, '/home/ubuntu/catalogapp')`
 
 - sudo systemctl restart nginx
 - for the virtual environment install all necessary python packages, which are (additionally to the list below "Stack/Dependencies")
@@ -82,11 +82,15 @@ I changed the logs of the app to be at `/var/log/nginx/catalogapp.error.log` as 
         access_log /var/log/nginx/catalogapp.access.log;
     }
 
+- finally update Ubuntu once again `sudo apt-get update` && `sudo apt-get upgrade` => as of Sept. 7th 2017 all updates are installed, double check by running commands again yields: `0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.`.
+- final test: restarting the server causes the wsgi app to start on boot and the website is running
+
 # How to login via ssh
 
     ssh grader@18.194.4.174 -p 2200
     
 Use the provided private ssh key `grader` for authentication (found in main folder of this project). Copy it to your machines /.ssh folder and chmod the permission to be 400 than add it to your keychain (e.g. for macOS: `ssh-add -K /.ssh/grader`)
+
 
 === Readme for the app itself:
 
