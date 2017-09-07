@@ -94,7 +94,7 @@ I changed the logs of the app to be at `/var/log/nginx/catalogapp.error.log` as 
 
     ssh grader@18.194.4.174 -p 2200
     
-Use the provided private ssh key `grader` for authentication (found in main folder of this project). Copy it to your machines /.ssh folder and chmod the permission to be 400 than add it to your keychain (e.g. for macOS: `ssh-add -K /.ssh/grader`)
+Use the provided private ssh key `grader` for authentication (sent as message while submitting project). Copy it in a file to your machines /.ssh folder and chmod the permission to be 400 than add it to your keychain (e.g. for macOS: `ssh-add -K /.ssh/grader`)
 
 
 === Readme for the app itself:
