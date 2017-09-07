@@ -30,17 +30,24 @@ The key's randomart image is:
 - verify, if successful: `grep -Po '^sudo.+:\K.*$' /etc/group`
     => ubuntu, grader
 
-ubuntu@ip-18-194-4-174:/$ sudo ufw status
-Status: active
+ubuntu@ip-18-194-4-174:/ `sudo ufw status`
+
+    Status: active
 
     To                         Action      From
     --                         ------      ----
     2200/tcp                   ALLOW       Anywhere
     80/tcp                     ALLOW       Anywhere
     123/udp                    ALLOW       Anywhere
+    80                         ALLOW       Anywhere
+    Nginx Full                 ALLOW       Anywhere
     2200/tcp (v6)              ALLOW       Anywhere (v6)
     80/tcp (v6)                ALLOW       Anywhere (v6)
     123/udp (v6)               ALLOW       Anywhere (v6)
+    80 (v6)                    ALLOW       Anywhere (v6)
+    Nginx Full (v6)            ALLOW       Anywhere (v6)
+
+Note: the rules for `Nginx Full` have been added later on.
 
 Because I had troubles with apache, I gave up on it and used nginx.
 
