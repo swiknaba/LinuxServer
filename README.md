@@ -13,6 +13,7 @@ The key fingerprint is:
 SHA256:6Y8OM+aCgexbF+khyHx1bJPDpR9ZI2HykUSEXsqO/9U lud@Ludwigs-MacBook-Pro.local
 The key's randomart image is:
 
+
     +---[RSA 2048]----+
     |       .=Xoo     |
     |      o.Bo= .    |
@@ -24,6 +25,7 @@ The key's randomart image is:
     | .o oo = o.      |
     | ..  ...+..      |
     +----[SHA256]-----+
+
 
 - give new user root rights: $ sudo usermod -aG sudo grader
 - verify, if successful: `grep -Po '^sudo.+:\K.*$' /etc/group`
@@ -50,6 +52,7 @@ This tutorial did work in the end, however I ran into several problems, document
   This line: `uwsgi_pass unix:///home/ubuntu/catalogapp/catalogapp.sock` note the `///` instead of `/` as shown in the tutorial
 2. the app secret key needs to be also above (not only inside) the `if __name__ == '__main__':` loop of the wsgi.py file.
 - secret_key: `TVLb2,zX,V#geo6j^dD%uzEgtsjaBoG8*AEKvMeeWR2{3;YNQ2{>3CgLrE4k2Lb3`
+3. add the following to the `wsgi.ph` file: `sys.path.insert(0, '/home/ubuntu/catalogapp')`
 
 - sudo systemctl restart nginx
 - for the virtual environment install all necessary python packages, which are (additionally to the list below "Stack/Dependencies")
