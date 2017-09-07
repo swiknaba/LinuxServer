@@ -2,15 +2,16 @@
 ## Progress of setting up
 - generate new SSh key pair "grader.pem", permissions: 400
 - change SSH port to: 2200 (/etc/ssh/sshd_config: PORT 2200)
-    => ssh ubuntu@35.158.70.106 -p 2200
+    => ssh ubuntu@18.194.4.174 -p 2200
 - disable root login (/etc/ssh/sshd_config: PermitRootLogin no)
 - create a new user "grader" as explained at [Stack Exchange](https://unix.stackexchange.com/questions/210228/add-a-user-wthout-password-but-with-ssh-and-public-key)
 
 - generate ssh keyfile: 
+
 your identification has been saved in grader.
 Your public key has been saved in grader.pub.
 The key fingerprint is:
-SHA256:6Y8OM+aCgexbF+khyHx1bJPDpR9ZI2HykUSEXsqO/9U lud@Ludwigs-MacBook-Pro.local
+`SHA256:6Y8OM+aCgexbF+khyHx1bJPDpR9ZI2HykUSEXsqO/9U lud@Ludwigs-MacBook-Pro.local`
 The key's randomart image is:
 
       +---[RSA 2048]----+
@@ -25,7 +26,7 @@ The key's randomart image is:
       | ..  ...+..      |
       +----[SHA256]-----+
 
-- give new user root rights: $ sudo usermod -aG sudo grader
+- give new user root rights: `sudo usermod -aG sudo grader`
 - verify, if successful: `grep -Po '^sudo.+:\K.*$' /etc/group`
     => ubuntu, grader
 
