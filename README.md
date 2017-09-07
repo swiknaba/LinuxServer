@@ -47,7 +47,7 @@ ubuntu@ip-18-194-4-174:/ `sudo ufw status`
     80 (v6)                    ALLOW       Anywhere (v6)
     Nginx Full (v6)            ALLOW       Anywhere (v6)
 
-Note: the rules for `Nginx Full` have been added later on.
+Note: the rules for `Nginx Full` have been added later on. The provided screenshot `Screenshot 2017-09-07 17.25.59.png` shows the permissions of Amazon Lightsail's Firewall.
 
 Because I had troubles with apache, I gave up on it and used nginx.
 
